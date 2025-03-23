@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign to word and audio</title>
+    <link rel="stylesheet" href="sixth.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Sign to Word & Audio</h1>
+        <input type="file" id="fileInput" multiple accept="image/*">
+        <button onclick="translateSign()">Translate</button>
+        <div id="uploadedImages"></div>
+        <div id="result">
+            <textarea id="wordTextArea" rows="4" cols="50" readonly></textarea>
+        </div>
+         <div class="navigation">
+             <a href="second.html" class="home-btn"><button>Home</button></a>
+         </div>
+    </div>
+    
+    <script src="sixth.js"></script>
+</body>
+</html>

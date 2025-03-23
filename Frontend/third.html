@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convert Word to Sign</title>
+    <link rel="stylesheet" href="third.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Convert Word to Sign</h1>
+        <div class="input-container">
+            <input type="text" id="inputText" placeholder="Enter text to convert to sign">
+            <p id="errorMessage" style="color: red; display: none;"></p>
+        </div>
+       <a href="four.html"> <button onclick="translateWord()">Translate</button></a>
+    </div>
+
+<script>
+    async function translateWord() {
+        const inputText = document.getElementById('inputText').value.trim();
+
+        if (inputText === "") {
+            document.getElementById('errorMessage').innerText = "Please enter a word.";
+            document.getElementById('errorMessage').style.display = "block";
+            return;
+        }
+
+        try {
+            const response = await fetch('http://localhost:8000/generate_sign_images', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ word: inputText }),
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to fetch sign images');
+            }
+
+            const data = await response.json();
+            const imageUrl = data.image_url;
+
+            // Redirect to fourth.html with the image URL
+            window.location.href = `four.html?imageUrl=${encodeURIComponent(imageUrl)}`;
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signs Page</title>
+    <link rel="stylesheet" href="fourth.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Sign</h1>
+        <div class="signs-container" id="signsContainer">
+            <!-- Sign image will be dynamically added here -->
+        </div>
+        <div class="navigation">
+            <a href="third.html" class="back-btn"><button>Back</button></a>
+            <a href="second.html" class="home-btn"><button>Home</button></a>
+        </div>
+    </div>
+
+    <script>
+
+const baseUrl = 'http://localhost:8000';
+const imageUrl = '/static/SignImage.png';
+const fullImageUrl = baseUrl + imageUrl;
+
+console.log('Full Image URL:', fullImageUrl); // Debug statement
+
+if (imageUrl) {
+    const signImage = document.createElement('img');
+    signImage.src = fullImageUrl;
+    signImage.alt = 'Sign Image';
+
+    // Add the image to the signs container
+    const signsContainer = document.getElementById('signsContainer');
+    signsContainer.appendChild(signImage);
+} else {
+    console.error('Image URL not found');
+}
+
+    </script>
+</body>
+</html>

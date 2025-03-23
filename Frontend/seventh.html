@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Language Translator</title>
+    <link rel="stylesheet" href="seventh.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Sign Language Translator</h1>
+        <div id="cameraCapture">
+            <video id="videoElement" autoplay></video>
+            <button onclick="startStopCapture()">Start/Stop Capture</button>
+        </div>
+        <button onclick="translateSign()">Translate</button>
+        <div id="result">
+            <textarea id="wordTextArea" rows="4" cols="50" readonly></textarea>
+        </div>
+        <a href="second.html"> <button>Home</button></a>
+    </div>
+    <script src="seventh.js"></script>
+</body>
+</html>

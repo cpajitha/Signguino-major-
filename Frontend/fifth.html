@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convert Sign to Word</title>
+    <link rel="stylesheet" href="fifth.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/opencv.js/4.5.4/opencv.js" async></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Convert Sign to Word</h1>
+        <div class="camera-section">
+    <canvas id="live-camera" width="640" height="480"></canvas>
+       </div>
+
+        <div class="translation-result">
+            <h2>Translation Result</h2>
+            <div class="result-box" id="translation-box">
+                <!-- Result of translation will be displayed here -->
+            </div>
+        </div>
+        <div class="navigation">
+            <a href="second.html" class="home-btn"><button>Home</button></a>
+            <button class="voice-toggle-btn" onclick="toggleVoice()">
+                <img src="audio_icon.png" alt="Audio Icon">
+            </button>
+            <a href="sixth.html" class="home-btn"><button>Next</button></a>
+        </div>
+    </div>
+    <script>
+        let voiceEnabled = false;
+
+       async function startCamera() {
+    try {
+        const video = document.getElementById('live-camera');
+        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        const canvas = document.createElement('canvas');
+        const context = canvas.getContext('2d');
+        video.parentNode.replaceChild(canvas, video);
+
+        setInterval(async () => {
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+            const imageData = canvas.toDataURL('image/jpeg');
+            await translateSignToWord(imageData);
+        }, 1000); // Adjust interval as needed
+    } catch (error) {
+        console.error('Error accessing camera:', error);
+    }
+}
+
+async function translateSignToWord(imageData) {
+    try {
+        const response = await fetch('http://localhost:8000/translate/sign-to-word', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ image: imageData })
+        });
+        const data = await response.json();
+        document.getElementById('translation-box').innerText = data.recognized_word;
+        if (voiceEnabled) {
+            speak(data.recognized_word);
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+
+        async function speak(text) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            speechSynthesis.speak(utterance);
+        }
+
+        function toggleVoice() {
+            voiceEnabled = !voiceEnabled;
+            const voiceToggleBtn = document.querySelector('.voice-toggle-btn');
+            if (voiceEnabled) {
+                voiceToggleBtn.classList.add('active');
+            } else {
+                voiceToggleBtn.classList.remove('active');
+            }
+        }
+
+        // Call the translation function when the page loads
+        window.onload = startCamera;
+    </script>
+</body>
+</html>

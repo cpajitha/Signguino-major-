@@ -1,0 +1,77 @@
+
+/* Reset default styles and set base styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #C2DE86; /* Set background color */
+}
+
+/* Styles for the main container */
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #8BBA65; /* Set background color */
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add box shadow for depth */
+}
+
+/* Styles for the main heading */
+h1 {
+    text-align: center;
+    color: #333; /* Set text color */
+    margin-bottom: 20px;
+}
+
+/* Styles for the input container */
+.input-container {
+    margin-bottom: 20px;
+}
+
+/* Styles for the input text field */
+input[type="text"] {
+    width: 100%; /* Set width to cover the whole area */
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #333;
+    box-sizing: border-box; /* Include padding in width calculation */
+    resize: vertical; /* Allow vertical resizing */
+    min-height: 100px; /* Set minimum height */
+}
+
+/* Styles for the translate button */
+.translate-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #333; /* Set button background color */
+    color: #fff; /* Set button text color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+/* Hover styles for the translate button */
+.translate-btn:hover {
+    background-color: #555; /* Darken background color on hover */
+}
+
+/* Styles for the translated output container */
+.translated-output {
+    display: none; /* Hide the container by default */
+    background-color: rgba(255, 255, 255, 0.8); /* Set background color with transparency */
+    padding: 10px;
+    margin: 20px auto;
+    max-width: 500px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add box shadow for depth */
+}
+
+/* Styles for links within the page */
+a {
+    color: inherit; /* Inherit text color from parent */
+    text-decoration: none; /* Remove underline */
+}
