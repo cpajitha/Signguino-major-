@@ -1,0 +1,10 @@
+tensorflow==2.5.0
+keras
+opencv-contrib-python
+split-folders
+uvicorn
+python-multipart
+pillow
+fastapi
+tensorflow-serving-api==2.5.0
+numpy
